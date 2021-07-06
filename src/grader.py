@@ -6,11 +6,11 @@ Created on Wed Apr 18 12:43:33 2018
 """
 
 import nltk
-#nltk.download('wordnet')
-#nltk.download('punkt')
-#nltk.download('averaged_perceptron_tagger')
-#nltk.download('maxent_ne_chunker')
-#ltk.download('treebank')
+nltk.download('wordnet')
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('maxent_ne_chunker')
+nltk.download('treebank')
 import re
 import os
 from nltk import Tree
@@ -70,19 +70,20 @@ def binary_search(a, x, lo=0, hi=None):
 #             mistakes = mistakes + 1
 # =============================================================================
         
+path = "/Users/junokim/Desktop/Code/GitHub/Essay-Grader"
 
-results = open("../output/results.txt", "w")
+results = open(path+"/output/results.txt", "w")
 
 # Store every file in the input folder
-files = os.listdir("../input/testing/essays/")
+files = os.listdir(path+"/input/testing/essays/")
 
-nlp = StanfordCoreNLP(r'resources\stanford-corenlp-full-2018-02-27')
+nlp = StanfordCoreNLP(path+'/src/resources/stanford-corenlp-full-2018-02-27')
 
 # Loop through and score every file
 for file in files:
     
     mistakes = 0
-    essay = open("../input/testing/essays/" + file, "r").read()
+    essay = open(path+"/input/testing/essays/" + file, "r").read()
     
     nopunc = ''.join(word for word in essay if word not in punc)
     tokens = re.split(" |\n|\t", nopunc)

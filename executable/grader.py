@@ -69,20 +69,21 @@ def binary_search(a, x, lo=0, hi=None):
 #             print(words)
 #             mistakes = mistakes + 1
 # =============================================================================
-        
 
-results = open("../output/results.txt", "w")
+path = "/Users/junokim/Desktop/Code/GitHub/Essay-Grader"        
+
+results = open(path+"/output/results.txt", "w")
 
 # Store every file in the input folder
-files = os.listdir("../input/testing/essays/")
+files = os.listdir(path+"/input/testing/essays/")
 
-nlp = StanfordCoreNLP(r'resources\stanford-corenlp-full-2018-02-27')
+nlp = StanfordCoreNLP(path+r'resources\stanford-corenlp-full-2018-02-27')
 
 # Loop through and score every file
 for file in files:
     
     mistakes = 0
-    essay = open("../input/testing/essays/" + file, "r").read()
+    essay = open(path+"/input/testing/essays/" + file, "r").read()
     
     nopunc = ''.join(word for word in essay if word not in punc)
     tokens = re.split(" |\n|\t", nopunc)
